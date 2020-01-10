@@ -1,3 +1,9 @@
+/**
+* Both players and encounters have stats. Players' stats are used to roll dice, and encounters' stats can be added to the player's as loot.
+*
+* */
+
+
 public class Stats {
     private int hp, str, dex, mag;
 

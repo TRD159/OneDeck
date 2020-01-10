@@ -1,9 +1,11 @@
-import java.util.ArrayList;
+public abstract class Card {
+    private String name;
 
-public class Card {
-    private int XPVal;
+    public Card(String name) {
+        this.name = name;
+    }
 
-    public Card() {
-
+    public String getName() {
+        return name;
     }
 }
