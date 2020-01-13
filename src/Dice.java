@@ -1,3 +1,5 @@
+
+
 public class Dice {
     private Color color;
     private int value;
