@@ -10,6 +10,13 @@ public class Player {
     private int xp;
     private Stats stats;
 
+    public Player(Stats stats) {
+        this.stats = stats;
+    }
+
+    public Player() {
+    }
+
     public ArrayList<Dice> diceRoll() {
         ArrayList<Dice> d = new ArrayList<>();
 
