@@ -12,6 +12,44 @@ public class Deck {
     private ArrayList<Card> dk, discard, field;
 
     public Deck() {
+        dk = new ArrayList<>();
+        discard = new ArrayList<>();
+        field = new ArrayList<Card>() {
+            {
+                add(null);
+                add(null);
+                add(null);
+                add(null);
+            }
+        };
+
+        //System.out.println(field.size());
+
+
+        dk.add(new Combat(1, 1, 1, 1, 1, "Placeholder", new ArrayList<Square>() {
+            {
+                add(new Square(true, 0, 0, Color.BLUE, 1, false));
+                add(new Square(true, 0, 0, Color.YELLOW, 1, false));
+            }
+        }));
+        dk.add(new Combat(1, 1, 1, 1, 1, "Placeholder", new ArrayList<Square>() {
+            {
+                add(new Square(true, 0, 0, Color.BLUE, 1, false));
+            }
+        }));
+
+        dk.add(new Combat(1, 1, 1, 1, 1, "Placeholder", new ArrayList<Square>() {
+            {
+                add(new Square(true, 0, 0, Color.BLUE, 1, false));
+                add(new Square(true, 0, 0, Color.YELLOW, 1, false));
+            }
+        }));
+        dk.add(new Combat(1, 1, 1, 1, 1, "Placeholder", new ArrayList<Square>() {
+            {
+                add(new Square(true, 0, 0, Color.BLUE, 1, false));
+            }
+        }));
+
     }
 
     public Card draw() {
@@ -34,7 +72,13 @@ public class Deck {
     public void explore() {
         int limit = 4;
         for(int x = 0; x < limit; x++) {
+            System.out.println("start");
+            if(dk.isEmpty()) {
+                //System.out.println("false");
+                return;
+            }
             if(field.get(x) == null) {
+                //System.out.println("true");
                 field.set(x, dk.get(dk.size() - 1));
             }
         }

@@ -52,4 +52,17 @@ public class Square {
     public void setCovered(boolean covered) {
         this.covered = covered;
     }
+
+    @Override
+    public String toString() {
+        return "Square{" +
+                "limited=" + limited +
+                ", covered=" + covered +
+                ", time=" + time +
+                ", health=" + health +
+                ", color=" + color +
+                ", value=" + value +
+                ", armor=" + armor +
+                '}';
+    }
 }
