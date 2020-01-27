@@ -12,7 +12,7 @@ public class Game implements Runnable {
         gameLoop = new Thread(this);
 
         d = new Deck();
-        p = new Player();
+        p = new Player(Class.MAGE);
 
         turnNumber = 1;
 

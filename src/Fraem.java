@@ -1,17 +1,34 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Fraem extends JFrame {
-    public Fraem(String title) throws HeadlessException {
+import static java.awt.Color.BLACK;
+
+public class Fraem extends JFrame{
+    public Fraem(String title, int x, int y) throws HeadlessException {
         super(title);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(1920, 1080));
+
+        //pack();
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
+        setUndecorated(false);
+
+        setResizable(false);
 
         setLayout(null);
+
+        Insets i = getInsets();
+
+        int w = x + i.left + i.right;
+        int h = y + i.top + i.bottom;
+
+        setPreferredSize(new Dimension(w, h));
+
+        add(new Penal(x, y));
+
+        pack();
+        setSize(w, h);
 
         setVisible(true);
     }
