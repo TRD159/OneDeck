@@ -1,4 +1,5 @@
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.lang.reflect.Array;
@@ -13,7 +14,8 @@ public class Player {
     private int xp;
     private Stats stats;
     private Class aClass;
-    private BufferedImage img = null;
+    private static BufferedImage img = null;
+    private static BufferedImage image = null;
 
     public Player(Class aClass) {
         this.aClass = aClass;
@@ -22,7 +24,7 @@ public class Player {
             case MAGE:
                 stats = new Stats(5, 1, 2, 4);
                 try {
-                    ImageIO.read(new File("Images/Mage.jpg"));
+                    img = ImageIO.read(new File("Images/Mage.jpg"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.exit(-1);
@@ -31,7 +33,7 @@ public class Player {
             case ROGUE:
                 stats = new Stats(5, 1, 4, 2);
                 try {
-                    ImageIO.read(new File("Images/Rogue.jpg"));
+                    img = ImageIO.read(new File("Images/Rogue.jpg"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.exit(-1);
@@ -40,7 +42,7 @@ public class Player {
             case ARCHER:
                 stats = new Stats(5, 2, 3, 2);
                 try {
-                    ImageIO.read(new File("Images/Archer.jpg"));
+                    img = ImageIO.read(new File("Images/Archer.jpg"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.exit(-1);
@@ -49,7 +51,7 @@ public class Player {
             case PALADIN:
                 stats = new Stats(5, 3, 1, 3);
                 try {
-                    ImageIO.read(new File("Images/Paladin.jpg"));
+                    img = ImageIO.read(new File("Images/Paladin.jpg"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.exit(-1);
@@ -58,7 +60,7 @@ public class Player {
             case WARRIOR:
                 stats = new Stats(6, 4, 2, 1);
                 try {
-                    ImageIO.read(new File("Images/Warrior.jpg"));
+                    img = ImageIO.read(new File("Images/Warrior.jpg"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.exit(-1);
@@ -68,6 +70,12 @@ public class Player {
                 stats = new Stats(1, 1, 1, 1);
                 break;
         }
+
+        double f = 2;
+
+        image = new BufferedImage((int)(img.getWidth()/f), (int)(img.getHeight()/f), BufferedImage.TYPE_INT_ARGB);
+        Graphics g2 = image.createGraphics();
+        g2.drawImage(img,  0, 0, (int)(img.getWidth()/f), (int)(img.getHeight()/f), 0, 0, img.getWidth(), img.getHeight(), null);
     }
 
     public Player() {
@@ -95,5 +103,9 @@ public class Player {
     {
         int range = (max - min) + 1;
         return (int)(Math.random() * range) + min;
+    }
+
+    public static BufferedImage getImg() {
+        return image;
     }
 }
