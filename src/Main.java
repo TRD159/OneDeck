@@ -1,17 +1,24 @@
 public class Main {
-    static Game g;
-    static Fraem f;
 
-    public static void main(String[] args) {
+    Game g;
+    Fraem f;
+
+    public void main() {
         g = new Game();
-        f = new Fraem("Name", 1600, 900);
+        f = new Fraem("Gaem", 1600, 900, g);
+        g.setF(f);
     }
 
-    public static Game getG() {
+    public static void main(String[] args) {
+        Main m = new Main();
+        m.main();
+    }
+
+    public Game getG() {
         return g;
     }
 
-    public static Fraem getF() {
+    public Fraem getF() {
         return f;
     }
 }

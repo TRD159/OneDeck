@@ -1,11 +1,16 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class Penal extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
-    public Penal(int x, int y) {
+    JButton b = new JButton("?");
+    Game gaem;
+
+    public Penal(int x, int y, Game g) {
         super();
         //System.out.println(x + ", " +  y);
         setSize(x, y);
@@ -14,7 +19,23 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
         addMouseMotionListener(this);
 
         super.requestFocus();
+
+        setLayout(null);
+
+        this.gaem = g;
+
+        //addElement(b, 100, 100, 100, 20);
+
         //add(new MouseAdapter())
+    }
+
+    private void addElement(JComponent c, int x, int y, int w, int h) {
+        c.setLocation(x, y);
+        c.setSize(w, h);
+
+        c.setEnabled(true);
+
+        add(c);
     }
 
     public void paint(Graphics g) {
@@ -24,8 +45,14 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, getWidth(), getHeight());
         //g2.drawImage(Player.getImg(), 0, 0, null);
-        if(Main.getG().p == null) {
-
+        if(gaem.p.getaClass() == 0) {
+            try {
+                System.out.println(Player.getArcher());
+                g2.drawImage(Player.getArcher(), 100, 100, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(0);
+            }
         }
         g.drawImage(b2, 0, 0, null);
         //System.out.println(getWidth() + ", " + getHeight());

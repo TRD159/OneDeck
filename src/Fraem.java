@@ -4,7 +4,7 @@ import java.awt.*;
 import static java.awt.Color.BLACK;
 
 public class Fraem extends JFrame{
-    public Fraem(String title, int x, int y) throws HeadlessException {
+    public Fraem(String title, int x, int y, Game g) throws HeadlessException {
         super(title);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,7 +25,7 @@ public class Fraem extends JFrame{
 
         setPreferredSize(new Dimension(w, h));
 
-        add(new Penal(x, y));
+        add(new Penal(x, y, g));
 
         pack();
         setSize(w, h);

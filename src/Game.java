@@ -9,10 +9,12 @@ public class Game{
     Player p = null;
     int turnNumber;
 
+    Fraem f;
+
     public Game() {
 
         //d = new Deck();
-        //p = new Player(Class.MAGE);
+        p = new Player();
 
         turnNumber = 1;
     }
@@ -36,5 +38,9 @@ public class Game{
             }
         }
         turnNumber++;
+    }
+
+    public void setF(Fraem f) {
+        this.f = f;
     }
 }
