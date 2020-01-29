@@ -1,3 +1,5 @@
+import com.sun.deploy.ui.ImageLoader;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -7,8 +9,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Penal extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
-    JButton b = new JButton("?");
+    JButton a, m, w, r, p;
     Game gaem;
+
+    ImgLoader imgLoader;
 
     public Penal(int x, int y, Game g) {
         super();
@@ -23,6 +27,14 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
         setLayout(null);
 
         this.gaem = g;
+
+        a = new JButton("Archer");
+        m = new JButton("Mage");
+        w = new JButton("Warrior");
+        r = new JButton("Rogue");
+        p = new JButton("Paladin");
+
+        imgLoader = new ImgLoader();
 
         //addElement(b, 100, 100, 100, 20);
 
@@ -39,6 +51,7 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
     }
 
     public void paint(Graphics g) {
+
         BufferedImage b2 = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics g2 = b2.createGraphics();
 
@@ -47,14 +60,20 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
         //g2.drawImage(Player.getImg(), 0, 0, null);
         if(gaem.p.getaClass() == 0) {
             try {
-                System.out.println(Player.getArcher());
-                g2.drawImage(Player.getArcher(), 100, 100, null);
+                //System.out.println(gaem.p.getArcher());
+                g2.drawImage(imgLoader.loadImage("Archer", 0.4), 0, 100, null);
+                g2.drawImage(imgLoader.loadImage("Paladin", 0.4), 325, 100, null);
+                g2.drawImage(imgLoader.loadImage("Warrior", 0.4), 650, 100, null);
+                g2.drawImage(imgLoader.loadImage("Rogue", 0.4), 975, 100, null);
+                g2.drawImage(imgLoader.loadImage("Mage", 0.4), 1300, 100, null);
             } catch (Exception e) {
                 e.printStackTrace();
                 System.exit(0);
             }
         }
         g.drawImage(b2, 0, 0, null);
+        //System.out.println(gaem.p.getArcher().getWidth());
+
         //System.out.println(getWidth() + ", " + getHeight());
     }
 

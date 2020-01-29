@@ -19,72 +19,23 @@ public class Player {
     private static BufferedImage img = null;
     private static BufferedImage image = null;
 
-    private static BufferedImage mage = null, rogue = null, paladin = null, archer = null, warrior = null;
-
     public Player(int aClass) {
         this.aClass = aClass;
 
-        double f = 2.0;
-
-        try {
-            img = ImageIO.read(new File("Images/Mage.jpg"));
-            resize(mage, img, f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
-        try {
-            img = ImageIO.read(new File("Images/Rogue.jpg"));
-            resize(rogue, img, f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
-        try {
-            img = ImageIO.read(new File("Images/Archer.jpg"));
-            resize(archer, img, f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
-        try {
-            img = ImageIO.read(new File("Images/Paladin.jpg"));
-            resize(paladin, img, f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
-        try {
-            img = ImageIO.read(new File("Images/Warrior.jpg"));
-            resize(warrior, img, f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
         switch (aClass) {
             case PALADIN:
-                resize(image, paladin, 1);
                 stats = new Stats(5, 3, 1, 3);
                 break;
             case ROGUE:
-                resize(image, rogue, 1);
                 stats = new Stats(5, 1, 4, 2);
                 break;
             case WARRIOR:
-                resize(image, warrior, 1);
                 stats = new Stats(6, 4, 2, 1);
                 break;
             case MAGE:
-                resize(image, mage, 1);
                 stats = new Stats(5, 1, 2, 4);
                 break;
             case ARCHER:
-                resize(image, archer, 1);
                 stats = new Stats(5, 2, 3, 1);
                 break;
         }
@@ -92,48 +43,6 @@ public class Player {
 
     public Player() {
         aClass = NONE;
-
-        double f = 2.0;
-
-        try {
-            img = ImageIO.read(new File("Images/Mage.jpg"));
-            resize(mage, img, f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
-        try {
-            img = ImageIO.read(new File("Images/Rogue.jpg"));
-            resize(rogue, img, f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
-        try {
-            img = ImageIO.read(new File("Images/Archer.jpg"));
-            resize(archer, img, f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
-        try {
-            img = ImageIO.read(new File("Images/Paladin.jpg"));
-            resize(paladin, img, f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-
-        try {
-            img = ImageIO.read(new File("Images/Warrior.jpg"));
-            resize(warrior, img, f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
     }
 
     private void resize(BufferedImage i, BufferedImage m, double f) {
@@ -164,26 +73,6 @@ public class Player {
     {
         int range = (max - min) + 1;
         return (int)(Math.random() * range) + min;
-    }
-
-    public static BufferedImage getMage() {
-        return mage;
-    }
-
-    public static BufferedImage getRogue() {
-        return rogue;
-    }
-
-    public static BufferedImage getPaladin() {
-        return paladin;
-    }
-
-    public static BufferedImage getArcher() {
-        return archer;
-    }
-
-    public static BufferedImage getWarrior() {
-        return warrior;
     }
 
     public int getaClass() {
