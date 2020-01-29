@@ -34,6 +34,12 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
         r = new JButton("Rogue");
         p = new JButton("Paladin");
 
+        addElement(a, 0, 550, 280, 40);
+        addElement(p, 325, 550, 280, 40);
+        addElement(w, 650, 550, 280, 40);
+        addElement(r, 975, 550, 280, 40);
+        addElement(m, 1300, 550, 280, 40);
+
         imgLoader = new ImgLoader();
 
         //addElement(b, 100, 100, 100, 20);
@@ -42,12 +48,13 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
     }
 
     private void addElement(JComponent c, int x, int y, int w, int h) {
-        c.setLocation(x, y);
-        c.setSize(w, h);
-
-        c.setEnabled(true);
 
         add(c);
+
+        c.setBounds(x, y, w, h);
+        //c.repaint();
+
+        c.setEnabled(true);
     }
 
     public void paint(Graphics g) {
