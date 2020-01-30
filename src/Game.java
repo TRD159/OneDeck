@@ -13,7 +13,7 @@ public class Game{
 
     public Game() {
 
-        //d = new Deck();
+        d = new Deck();
         p = new Player();
 
         turnNumber = 1;
@@ -42,5 +42,17 @@ public class Game{
 
     public void setF(Fraem f) {
         this.f = f;
+    }
+
+    public void setDungeon(int d) {
+        this.d.setBoss(d);
+    }
+
+    public int getDungeon() {
+        return this.d.getBoss();
+    }
+
+    public void setClass(int c) {
+        p.setaClass(c);
     }
 }

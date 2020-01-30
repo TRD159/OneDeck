@@ -79,6 +79,28 @@ public class Player {
         return aClass;
     }
 
+    public void setaClass(int aClass) {
+        this.aClass = aClass;
+
+        switch (aClass) {
+            case PALADIN:
+                stats = new Stats(5, 3, 1, 3);
+                break;
+            case ROGUE:
+                stats = new Stats(5, 1, 4, 2);
+                break;
+            case WARRIOR:
+                stats = new Stats(6, 4, 2, 1);
+                break;
+            case MAGE:
+                stats = new Stats(5, 1, 2, 4);
+                break;
+            case ARCHER:
+                stats = new Stats(5, 2, 3, 1);
+                break;
+        }
+    }
+
     public static BufferedImage getImg() {
         return image;
     }

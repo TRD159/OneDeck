@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * */
 
 public class Deck {
-    public static final int DRAGON = 0, HYDRA = 1, YETI = 2, MINOTAUR = 3, LICH = 4;
+    public static final int DRAGON = 1, HYDRA = 2, YETI = 3, MINOTAUR = 4, LICH = 5;
 
     private ArrayList<Card> dk, discard, field;
     private int boss;
@@ -26,9 +26,11 @@ public class Deck {
             }
         };
 
+        boss = 0;
+
         //System.out.println(field.size());
 
-
+        /*
         dk.add(new Combat(1, 1, 1, 1, 1, "Placeholder", new ArrayList<Square>() {
             {
                 add(new Square(true, 0, 0, Color.BLUE, 1, false));
@@ -71,7 +73,7 @@ public class Deck {
             {
                 add(new Square(true, 0, 0, Color.BLUE, 1, false));
             }
-        }));
+        }));*/
     }
 
     public Card draw() {
@@ -116,5 +118,13 @@ public class Deck {
 
     public ArrayList<Card> getField() {
         return field;
+    }
+
+    public int getBoss() {
+        return boss;
+    }
+
+    public void setBoss(int boss) {
+        this.boss = boss;
     }
 }
