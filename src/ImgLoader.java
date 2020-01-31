@@ -2,8 +2,39 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ImgLoader {
+    Map<String, BufferedImage> images;
+
+    public ImgLoader() {
+        images = new HashMap<>();
+        File folder = new File("Images");
+        try {
+            for (File file : folder.listFiles()) {
+                if (file.isFile()) {
+                    StringBuffer s = new StringBuffer(file.getName());
+                    s.delete(s.length() - 4, s.length());
+
+                    //BufferedImage b = null;
+
+                    //images.put(s.toString(), ImageIO.read(file));
+                    //System.out.println(s.indexOf("."));
+                    //System.out.println(s.toString());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
+
+    public BufferedImage getImage(String name) {
+        return images.get(name);
+    }
+
     public BufferedImage loadImage(String name, double factor) {
         try {
             BufferedImage img = null;

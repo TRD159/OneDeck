@@ -150,8 +150,8 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
             g2.drawImage(imgLoader.loadImage("Mage", 0.4), 1300, 100, null);
             g2.drawString("Select Your Player Character", 100, 800);
         } else {
-            g2.setFont(new Font("Font", Font.PLAIN, 40));
-            g2.drawString("Player:", 0, 440);
+            //g2.setFont(new Font("Font", Font.PLAIN, 40));
+            //g2.drawString("Player:", 0, 440);
             BufferedImage pc = null;
             switch (gaem.p.getaClass()) {
                 case Player.ARCHER:
@@ -169,10 +169,18 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
                 case Player.WARRIOR:
                     pc = imgLoader.loadImage("Warrior", 0.4);
             }
-            g2.drawImage(pc, 0, 460, null);
+            //g2.drawImage(pc, 0, 460, null);
 
             if(gaem.getDungeon() == 0) {
+                g2.drawString("Select a Dungeon", 325, 150);
 
+                g2.drawImage(imgLoader.loadImage("DragonCave", 0.6), 50, 200, null);
+                g2.drawImage(imgLoader.loadImage("HydraReef", 0.6), 550, 200, null);
+                g2.drawImage(imgLoader.loadImage("YetiCavern", 0.6), 1050, 200, null);
+                g2.drawImage(imgLoader.loadImage("MinotaurMaze", 0.6), 300, 550, null);
+                g2.drawImage(imgLoader.loadImage("LichTomb", 0.6), 900, 550, null);
+            } else {
+                repaint();
             }
         }
 
@@ -204,7 +212,21 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if(gaem.getDungeon() == 0) {
+            if (e.getY() > 200 && e.getY() < 500) {
+                if (e.getX() > 50 && e.getX() < 470) {
+                    gaem.setDungeon(Deck.DRAGON);
+                    repaint();
+                } else if(e.getX() > 550 && e.getX() < 970) {
+                    gaem.setDungeon(Deck.HYDRA);
+                    repaint();
+                }
 
+
+
+
+            }
+        }
     }
 
     @Override
