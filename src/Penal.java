@@ -181,6 +181,7 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
                 g2.drawImage(imgLoader.loadImage("LichTomb", 0.6), 900, 550, null);
             } else {
                 repaint();
+                
             }
         }
 
@@ -220,11 +221,15 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
                 } else if(e.getX() > 550 && e.getX() < 970) {
                     gaem.setDungeon(Deck.HYDRA);
                     repaint();
+                } else if(e.getX() > 1050 && e.getX() < 1470) {
+                    gaem.setDungeon(Deck.YETI);
                 }
-
-
-
-
+            } else if(e.getY() > 550 && e.getY() < 750) {
+                if(e.getX() > 300 && e.getX() < 720) {
+                    gaem.setDungeon(Deck.MINOTAUR);
+                } else if(e.getX() > 800 && e.getX() < 1220) {
+                    gaem.setDungeon(Deck.LICH);
+                }
             }
         }
     }

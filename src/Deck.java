@@ -89,23 +89,39 @@ public class Deck {
         }
     }
 
-    public void explore(int limit) {
-
-    }
-
-    public void explore() {
-        int limit = 4;
+    public boolean explore(int limit) {
+        if(dk.isEmpty())
+            return false;
         for(int x = 0; x < limit; x++) {
-            System.out.println("start");
+            //System.out.println("start");
             if(dk.isEmpty()) {
                 //System.out.println("false");
-                return;
+                return true;
             }
             if(field.get(x) == null) {
                 //System.out.println("true");
                 field.set(x, dk.get(dk.size() - 1));
             }
         }
+        return true;
+    }
+
+    public boolean explore() {
+        int limit = 4;
+        if(dk.isEmpty())
+            return false;
+        for(int x = 0; x < limit; x++) {
+            //System.out.println("start");
+            if(dk.isEmpty()) {
+                //System.out.println("false");
+                return true;
+            }
+            if(field.get(x) == null) {
+                //System.out.println("true");
+                field.set(x, dk.remove(dk.size() - 1));
+            }
+        }
+        return true;
     }
 
     public ArrayList<Card> getDk() {

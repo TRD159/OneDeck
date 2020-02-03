@@ -23,22 +23,11 @@ public class Game{
 
     }
 
-    private void gaemLoop() {
-        loop:
-        {
-            d.Discard(2);
-            if (d.getField().size() == 0 && d.getDk().size() > 0) {
-                d.explore();
-            } else {
-                for (Card c : d.getField()) {
-                    if (c != null) {
-                        System.out.println(c.toString());
-                    }
-                }
-            }
-        }
-        turnNumber++;
+    public void timeSpend(int t) {
+        d.Discard(t);
     }
+
+
 
     public void setF(Fraem f) {
         this.f = f;
