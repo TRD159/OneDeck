@@ -10,6 +10,8 @@ import java.io.File;
 
 public class Penal extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
     JButton a, m, w, r, p;
+    JButton explore, flip;
+
     Game gaem;
 
     ImgLoader imgLoader;
@@ -111,6 +113,8 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
         });
 
 
+        //explore.setEnabled(false);
+
         imgLoader = new ImgLoader();
 
         //addElement(b, 100, 100, 100, 20);
@@ -180,8 +184,25 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
                 g2.drawImage(imgLoader.loadImage("MinotaurMaze", 0.6), 300, 550, null);
                 g2.drawImage(imgLoader.loadImage("LichTomb", 0.6), 900, 550, null);
             } else {
+                explore.setEnabled(true);
                 repaint();
-                
+
+                g2.drawImage(imgLoader.loadImage("BackOfCard", 0.25), 668, 50, null);
+                g2.drawString("" + gaem.d.getDk().size(), 735, 175);
+
+                g2.setFont(new Font("Font", Font.PLAIN, 50));
+                g2.drawString("Potion Tokens: " + gaem.p.getPotions(), 10, 850);
+
+                String h = "HP: " + gaem.p.getStats().getHp();
+                if(gaem.p.getDamage() > 0) {
+                    h += " - " + gaem.p.getDamage();
+                }
+                g2.drawString(h, 10, 50);
+                g2.drawString("STR: " + gaem.p.getStats().getStr(), 10, 100);
+                g2.drawString("DEX: " + gaem.p.getStats().getDex(), 10, 150);
+                g2.drawString("MAG: " + gaem.p.getStats().getMag(), 10, 200);
+
+
             }
         }
 
@@ -213,7 +234,7 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(gaem.getDungeon() == 0) {
+        if(gaem.getDungeon() == 0 && gaem.p.getaClass() != Player.NONE) {
             if (e.getY() > 200 && e.getY() < 500) {
                 if (e.getX() > 50 && e.getX() < 470) {
                     gaem.setDungeon(Deck.DRAGON);

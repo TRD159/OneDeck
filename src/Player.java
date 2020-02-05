@@ -18,6 +18,8 @@ public class Player {
     private int aClass;
     private static BufferedImage img = null;
     private static BufferedImage image = null;
+    private int potions = 0;
+    private int damage = 0;
 
     public Player(int aClass) {
         this.aClass = aClass;
@@ -99,6 +101,38 @@ public class Player {
                 stats = new Stats(5, 2, 3, 1);
                 break;
         }
+    }
+
+    public int getPotions() {
+        return potions;
+    }
+
+    public void addPotion(int p) {
+        potions += p;
+    }
+
+    public void usePotions(int p) {
+        potions -= p;
+    }
+
+    public Stats getStats() {
+        return stats;
+    }
+
+    public void addStats(Stats s) {
+        stats.addStats(s);
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void hurt (int d) {
+        damage += d;
+    }
+
+    public void heal(int d) {
+        damage -= d;
     }
 
     public static BufferedImage getImg() {

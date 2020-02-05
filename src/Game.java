@@ -2,12 +2,17 @@ import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 //TODO: FOR THE LOVE OF GOD, GET THE DISPLAY STUFF WORKING
 
-public class Game{
+public class Game implements Runnable{
 
     Thread gameLoop;
     Deck d = null;
     Player p = null;
     int turnNumber;
+
+    Thread t;
+
+    boolean canExplore = false;
+    boolean canOpen = false;
 
     Fraem f;
 
@@ -17,6 +22,9 @@ public class Game{
         p = new Player();
 
         turnNumber = 1;
+
+        t = new Thread(this);
+        //t.start();
     }
 
     public void initPlayer(Class clas) {
@@ -27,7 +35,12 @@ public class Game{
         d.Discard(t);
     }
 
+    @Override
+    public void run() {
+        while (true) {
 
+        }
+    }
 
     public void setF(Fraem f) {
         this.f = f;
@@ -43,5 +56,9 @@ public class Game{
 
     public void setClass(int c) {
         p.setaClass(c);
+    }
+
+    public void takeTurn(int c) {
+
     }
 }

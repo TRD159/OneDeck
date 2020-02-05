@@ -13,6 +13,7 @@ public class Deck {
 
     private ArrayList<Card> dk, discard, field;
     private int boss;
+    private int floor;
 
     public Deck() {
         dk = new ArrayList<>();
@@ -26,7 +27,16 @@ public class Deck {
             }
         };
 
+        for(int x = 0; x < 44; x++) {
+            dk.add(new Combat(0, 1, 0, 0, 3, "Placeholder", new ArrayList<Square>() {
+                {
+                    new Square(false, 2, 1, Color.BLUE, 4, false);
+                }
+            }));
+        }
+
         boss = 0;
+        floor = 1;
 
         //System.out.println(field.size());
 
