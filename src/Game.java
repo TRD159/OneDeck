@@ -11,8 +11,8 @@ public class Game implements Runnable{
 
     Thread t;
 
-    boolean canExplore = false;
-    boolean canOpen = false;
+    boolean canExplore = true;
+    //boolean canOpen = false;
 
     Fraem f;
 
@@ -29,6 +29,22 @@ public class Game implements Runnable{
 
     public void initPlayer(Class clas) {
 
+    }
+
+    public void explore() {
+        if(canExplore) {
+            timeSpend(2);
+            d.explore();
+            canExplore = false;
+        }
+    }
+
+    public void open(int i) {
+        if(d.getField().get(i) == null) {
+            return;
+        }
+        timeSpend(2);
+        d.getField().get(i).flip();
     }
 
     public void timeSpend(int t) {

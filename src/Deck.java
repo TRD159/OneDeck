@@ -90,13 +90,14 @@ public class Deck {
         return dk.remove(dk.size() - 1);
     }
 
-    public void Discard(int count) {
+    public boolean Discard(int count) {
         for(int x = 0; x < count; x++) {
             discard.add(dk.remove(dk.size() - 1));
             if(dk.size() == 0) {
-                return;
+                return false;
             }
         }
+        return true;
     }
 
     public boolean explore(int limit) {

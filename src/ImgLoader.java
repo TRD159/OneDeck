@@ -20,7 +20,7 @@ public class ImgLoader {
 
                     //BufferedImage b = null;
 
-                    //images.put(s.toString(), ImageIO.read(file));
+                    images.put(s.toString(), ImageIO.read(file));
                     //System.out.println(s.indexOf("."));
                     //System.out.println(s.toString());
                 }
@@ -33,6 +33,16 @@ public class ImgLoader {
 
     public BufferedImage getImage(String name) {
         return images.get(name);
+    }
+
+    public BufferedImage getImage(String name, double factor) {
+        int w = (int)(images.get(name).getWidth() * factor);
+        int h = (int)(images.get(name).getHeight() * factor);
+
+        BufferedImage b = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        b.createGraphics().drawImage(images.get(name), 0, 0, w, h, null);
+
+        return b;
     }
 
     public BufferedImage loadImage(String name, double factor) {

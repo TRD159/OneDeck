@@ -7,10 +7,13 @@ import java.awt.Color;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 public class Penal extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
     JButton a, m, w, r, p;
     JButton explore, flip;
+
+    ArrayList<Point> points;
 
     Game gaem;
 
@@ -23,6 +26,13 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
         addMouseListener(this);
         addKeyListener(this);
         addMouseMotionListener(this);
+
+        points = new ArrayList<Point>() {
+            {
+                add(new Point(470, 250));
+                add(new Point(866, 250));
+            }
+        };
 
         super.requestFocus();
 
@@ -147,11 +157,11 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
         //g2.drawImage(Player.getImg(), 0, 0, null);
         if(gaem.p.getaClass() == 0) {
             //System.out.println(gaem.p.getArcher());
-            g2.drawImage(imgLoader.loadImage("Archer", 0.4), 0, 100, null);
-            g2.drawImage(imgLoader.loadImage("Paladin", 0.4), 325, 100, null);
-            g2.drawImage(imgLoader.loadImage("Warrior", 0.4), 650, 100, null);
-            g2.drawImage(imgLoader.loadImage("Rogue", 0.4), 975, 100, null);
-            g2.drawImage(imgLoader.loadImage("Mage", 0.4), 1300, 100, null);
+            g2.drawImage(imgLoader.getImage("Archer", 0.4), 0, 100, null);
+            g2.drawImage(imgLoader.getImage("Paladin", 0.4), 325, 100, null);
+            g2.drawImage(imgLoader.getImage("Warrior", 0.4), 650, 100, null);
+            g2.drawImage(imgLoader.getImage("Rogue", 0.4), 975, 100, null);
+            g2.drawImage(imgLoader.getImage("Mage", 0.4), 1300, 100, null);
             g2.drawString("Select Your Player Character", 100, 800);
         } else {
             //g2.setFont(new Font("Font", Font.PLAIN, 40));
@@ -159,36 +169,38 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
             BufferedImage pc = null;
             switch (gaem.p.getaClass()) {
                 case Player.ARCHER:
-                    pc = imgLoader.loadImage("Archer", 0.4);
+                    pc = imgLoader.getImage("Archer", 0.4);
                     break;
                 case Player.MAGE:
-                    pc = imgLoader.loadImage("Mage", 0.4);
+                    pc = imgLoader.getImage("Mage", 0.4);
                     break;
                 case Player.PALADIN:
-                    pc = imgLoader.loadImage("Paladin", 0.4);
+                    pc = imgLoader.getImage("Paladin", 0.4);
                     break;
                 case Player.ROGUE:
-                    pc = imgLoader.loadImage("Rogue", 0.4);
+                    pc = imgLoader.getImage("Rogue", 0.4);
                     break;
                 case Player.WARRIOR:
-                    pc = imgLoader.loadImage("Warrior", 0.4);
+                    pc = imgLoader.getImage("Warrior", 0.4);
             }
             //g2.drawImage(pc, 0, 460, null);
 
             if(gaem.getDungeon() == 0) {
                 g2.drawString("Select a Dungeon", 325, 150);
 
-                g2.drawImage(imgLoader.loadImage("DragonCave", 0.6), 50, 200, null);
-                g2.drawImage(imgLoader.loadImage("HydraReef", 0.6), 550, 200, null);
-                g2.drawImage(imgLoader.loadImage("YetiCavern", 0.6), 1050, 200, null);
-                g2.drawImage(imgLoader.loadImage("MinotaurMaze", 0.6), 300, 550, null);
-                g2.drawImage(imgLoader.loadImage("LichTomb", 0.6), 900, 550, null);
+                g2.drawImage(imgLoader.getImage("DragonCave", 0.6), 50, 200, null);
+                g2.drawImage(imgLoader.getImage("HydraReef", 0.6), 550, 200, null);
+                g2.drawImage(imgLoader.getImage("YetiCavern", 0.6), 1050, 200, null);
+                g2.drawImage(imgLoader.getImage("MinotaurMaze", 0.6), 300, 550, null);
+                g2.drawImage(imgLoader.getImage("LichTomb", 0.6), 900, 550, null);
             } else {
-                explore.setEnabled(true);
-                repaint();
+                //explore.setEnabled(true);
+                //repaint();
 
-                g2.drawImage(imgLoader.loadImage("BackOfCard", 0.25), 668, 50, null);
+                g2.drawImage(imgLoader.getImage("BackOfCard", 0.25), 668, 50, null);
                 g2.drawString("" + gaem.d.getDk().size(), 735, 175);
+                
+                
 
                 g2.setFont(new Font("Font", Font.PLAIN, 50));
                 g2.drawString("Potion Tokens: " + gaem.p.getPotions(), 10, 850);
@@ -202,7 +214,12 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
                 g2.drawString("DEX: " + gaem.p.getStats().getDex(), 10, 150);
                 g2.drawString("MAG: " + gaem.p.getStats().getMag(), 10, 200);
 
+                g2.setColor(Color.GRAY);
+                g2.fillRect(1400, 255, 175, 60);
+                /*g2.fillRect(1400, 455, 125, 60);*/
 
+                g2.setColor(Color.WHITE);
+                g2.drawString("Explore", 1400, 300);
             }
         }
 
@@ -251,6 +268,13 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
                 } else if(e.getX() > 800 && e.getX() < 1220) {
                     gaem.setDungeon(Deck.LICH);
                 }
+            }
+        } else {
+            if(e.getX() > 1400 && e.getX() < 1575 && e.getY() > 255 && e.getY() < 315) {
+                gaem.explore();
+                System.out.println(gaem.d.getDk().size());
+                //repaint();
+                
             }
         }
     }
