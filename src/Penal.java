@@ -29,8 +29,10 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
 
         points = new ArrayList<Point>() {
             {
-                add(new Point(470, 250));
-                add(new Point(866, 250));
+                add(new Point(503, 250)); //503 -> 767, 250 -> 438
+                add(new Point(833, 250)); //833 -> 1097, 250 -> 438
+                add(new Point(503, 450)); //503 -> 767, 450 -> 638
+                add(new Point(833, 450)); //833 -> 1097, 450 -> 638
             }
         };
 
@@ -197,10 +199,41 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
                 //explore.setEnabled(true);
                 //repaint();
 
+                switch (gaem.p.getaClass()) {
+                    case Player.MAGE:
+                        g2.drawImage(imgLoader.getImage("Mage", 0.3), 10, 250, null);
+                        break;
+                    case Player.ROGUE:
+                        g2.drawImage(imgLoader.getImage("Rogue", 0.3), 10, 250, null);
+                        break;
+                    case Player.ARCHER:
+                        g2.drawImage(imgLoader.getImage("Archer", 0.3), 10, 250, null);
+                        break;
+                    case Player.WARRIOR:
+                        g2.drawImage(imgLoader.getImage("Warrior", 0.3), 10, 250, null);
+                        break;
+                    case Player.PALADIN:
+                        g2.drawImage(imgLoader.getImage("Paladin", 0.3), 10, 250, null);
+                        break;
+                }
+
+                switch (gaem.getDungeon()) {
+                    case Deck.DRAGON:
+                        g2.drawImage(imgLoader.getImage("DragonCave", 0.4), 160, 50, null);
+                }
+
                 g2.drawImage(imgLoader.getImage("BackOfCard", 0.25), 668, 50, null);
                 g2.drawString("" + gaem.d.getDk().size(), 735, 175);
                 
-                
+                for(int i = 0; i < 4; i++) {
+                    if(gaem.d.getField().get(i) != null) {
+                        if(gaem.d.getField().get(i).isFlipped()) {
+                            g2.drawImage(imgLoader.getImage(gaem.d.getField().get(i).getName(), 0.25), points.get(i).x, points.get(i).y, null);
+                        } else {
+                            g2.drawImage(imgLoader.getImage("BackOfCard", 0.25), points.get(i).x, points.get(i).y, null);
+                        }
+                    }
+                }
 
                 g2.setFont(new Font("Font", Font.PLAIN, 50));
                 g2.drawString("Potion Tokens: " + gaem.p.getPotions(), 10, 850);
@@ -220,6 +253,8 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
 
                 g2.setColor(Color.WHITE);
                 g2.drawString("Explore", 1400, 300);
+
+                g2.drawString("Exp: " + gaem.p.getXp(), 1400, 60);
             }
         }
 
@@ -274,9 +309,22 @@ public class Penal extends JPanel implements MouseListener, MouseMotionListener,
                 gaem.explore();
                 System.out.println(gaem.d.getDk().size());
                 //repaint();
-                
+            }
+            if(e.getX() > 503 && e.getX() < 767) {
+                if(e.getY() > 250 && e.getY() < 438) {
+                    gaem.flip(0);
+                } else if(e.getY() > 450 && e.getY() < 638) {
+                    gaem.flip(2);
+                }
+            } else if(e.getX() > 833 && e.getX() < 1097) {
+                if(e.getY() > 250 && e.getY() < 438) {
+                    gaem.flip(1);
+                } else if(e.getY() > 450 && e.getY() < 638) {
+                    gaem.flip(3);
+                }
             }
         }
+        repaint();
     }
 
     @Override

@@ -15,6 +15,8 @@ public class Deck {
     private int boss;
     private int floor;
 
+    private ArrayList<Card> tempDeck;
+
     public Deck() {
         dk = new ArrayList<>();
         discard = new ArrayList<>();
@@ -27,12 +29,16 @@ public class Deck {
             }
         };
 
+        tempDeck = new ArrayList<Card>();
+
+
         for(int x = 0; x < 44; x++) {
-            dk.add(new Combat(0, 1, 0, 0, 3, "Placeholder", new ArrayList<Square>() {
+            dk.add(new Combat(0, 1, 0, 0, 3, "RunePuzzle", new ArrayList<Square>() {
                 {
                     new Square(false, 2, 1, Color.BLUE, 4, false);
                 }
             }));
+
         }
 
         boss = 0;
@@ -84,6 +90,21 @@ public class Deck {
                 add(new Square(true, 0, 0, Color.BLUE, 1, false));
             }
         }));*/
+    }
+
+/**
+    Remember: Combats are 0 and perils are 1
+*/
+    private void addCard(ArrayList<Card> raList, Card c) {
+        raList.add(c);
+    }
+
+    private Card createCard(int type, Stats s, int exp, String name, ArrayList<Square> squares) {
+        if(type == 0) {
+            return new Combat(s, exp, name, squares);
+        } else {
+            return new Peril(s, exp, name);
+        }
     }
 
     public Card draw() {

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Player {
     public static final int NONE = 0, MAGE = 1, ROGUE = 2, PALADIN = 3, ARCHER = 4, WARRIOR = 5;
 
-    private int xp;
+    private int xp = 0;
     private Stats stats;
     private int aClass;
     private static BufferedImage img = null;
@@ -137,5 +137,13 @@ public class Player {
 
     public static BufferedImage getImg() {
         return image;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public void addXp(int x) {
+        xp += x;
     }
 }

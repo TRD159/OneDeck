@@ -77,4 +77,19 @@ public class Game implements Runnable{
     public void takeTurn(int c) {
 
     }
+
+    public void flip(int i, int time) {
+        timeSpend(time);
+        if(d.getField().get(i).isFlipped()) {
+            return;
+        }
+        d.getField().get(i).flip();
+    }
+    public void flip(int i) {
+        timeSpend(2);
+        if(d.getField().get(i).isFlipped()) {
+            return;
+        }
+        d.getField().get(i).flip();
+    }
 }
